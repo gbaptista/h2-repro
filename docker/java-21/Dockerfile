@@ -6,7 +6,7 @@ RUN apt-get update && \
 
 RUN curl -s https://raw.githubusercontent.com/babashka/babashka/master/install | bash
 
-RUN mkdir -p /usr/workspace/data /usr/workspace/logs && \
+RUN mkdir -p /usr/workspace/data && \
     curl -L \
       https://github.com/h2database/h2database/releases/download/version-2.2.224/h2-2023-09-17.zip \
       -o /usr/workspace/h2-database.zip && \

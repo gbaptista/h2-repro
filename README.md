@@ -6,7 +6,6 @@ This repository contains a reproduction for demonstrating potential durability i
 
 ```sh
 mkdir -p data/h2/data
-mkdir -p data/h2/logs
 
 rvm install "jruby-9.4.6.0"
 

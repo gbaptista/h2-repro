@@ -30,7 +30,7 @@ def log!(data)
   data[:started] = time_to_iso(nano_to_time(data[:started]))
   data[:finished] = time_to_iso(nano_to_time(data[:finished]))
 
-  @log.puts data.to_json
+  @log.write("\n#{data.to_json}")
 end
 
 connection = 'jdbc:h2:tcp://localhost:9092/the_database;CACHE_SIZE=65536'

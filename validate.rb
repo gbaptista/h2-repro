@@ -33,6 +33,8 @@ end
 
 File.open('data/logs.jsonl', 'r') do |file|
   file.each_line do |raw|
+    next if raw.strip.empty?
+
     log = JSON.parse(raw)
     if log['kind'] == 'success'
       sql = "SELECT * FROM the_kv WHERE the_key='#{log['key']}';"
@@ -46,6 +48,9 @@ File.open('data/logs.jsonl', 'r') do |file|
       @progress.increment
     end
   rescue StandardError => _e
+    puts '-' * 20
+    puts raw
+    puts '-' * 20
     @result[:unexpected] += 1
   end
 end

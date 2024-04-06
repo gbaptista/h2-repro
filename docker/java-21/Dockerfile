@@ -1,7 +1,7 @@
 FROM clojure:temurin-21-tools-deps-bookworm-slim
 
 RUN apt-get update && \
-    apt-get install -y curl unzip iputils-ping htop && \
+    apt-get install -y curl unzip iputils-ping htop procps && \
     rm -rf /var/lib/apt/lists/*
 
 RUN curl -s https://raw.githubusercontent.com/babashka/babashka/master/install | bash

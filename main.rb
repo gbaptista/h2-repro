@@ -33,7 +33,7 @@ def log!(data)
   @log.write("\n#{data.to_json}")
 end
 
-connection = 'jdbc:h2:tcp://localhost:9092/the_database;CACHE_SIZE=65536'
+connection = 'jdbc:h2:tcp://localhost:9092/the_database'
 
 DB = Sequel.connect(connection, user: 'sa', password: '')
 

@@ -22,8 +22,13 @@ docker compose up
 
 ## Ingesting Data
 
+To delete the current database and start from scratch:
+```sh
+./clean-up.sh
+```
+
 Start inserting data:
-```ruby
+```sh
 bundle exec jruby main.rb
 ```
 

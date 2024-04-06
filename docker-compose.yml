@@ -7,7 +7,6 @@ services:
       - '5435:5435'
       - '8082:8082'
     volumes:
-      - ./data/h2/logs:/usr/workspace/logs
       - ./data/h2/data:/usr/workspace/data
     deploy:
       resources:

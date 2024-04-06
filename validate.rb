@@ -4,7 +4,7 @@ require 'sequel'
 require 'json'
 require 'ruby-progressbar'
 
-connection = 'jdbc:h2:tcp://localhost:9092/the_database;CACHE_SIZE=65536'
+connection = 'jdbc:h2:tcp://localhost:9092/the_database'
 
 DB = Sequel.connect(connection, user: 'sa', password: '')
 
@@ -22,7 +22,7 @@ rescue StandardError => e
   0
 end
 
-@result = { valid: 0, missing: 0, unexpected: 0 }
+@result = { is_there: 0, missing: 0, there_but_not_equal: 0, parser_errors: 0 }
 
 @missing = []
 
@@ -40,7 +40,9 @@ File.open('data/logs.jsonl', 'r') do |file|
       sql = "SELECT * FROM the_kv WHERE the_key='#{log['key']}';"
       result = DB.fetch(sql).first
       if result && result[:the_value] == log['value']
-        @result[:valid] += 1
+        @result[:is_there] += 1
+      elsif result && result[:the_value] != log['value']
+        @result[:there_but_not_equal] += 1
       else
         @missing << log
         @result[:missing] += 1
@@ -51,7 +53,7 @@ File.open('data/logs.jsonl', 'r') do |file|
     puts '-' * 20
     puts raw
     puts '-' * 20
-    @result[:unexpected] += 1
+    @result[:parser_errors] += 1
   end
 end
 

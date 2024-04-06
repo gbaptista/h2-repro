@@ -1,5 +1,7 @@
 # H2 Repro
 
+This repository contains a reproduction for demonstrating potential durability issues with [H2 Database](https://h2database.com). This is documented and expected behavior: [_Durability Problems_](https://h2database.com/html/advanced.html#durability_problems)
+
 ## Setup
 
 ```sh
@@ -42,7 +44,9 @@ You can validate at any time if the logged acknowledged inserts are really in th
 bundle exec jruby validate.rb
 ```
 
-## Simulating OOM
+## Simulations
+
+### OOM
 
 ```sh
 docker compose exec h2-database-java21 bash
@@ -50,6 +54,14 @@ docker compose exec h2-database-java21 bash
 
 ```sh
 :(){ :|:& };:
+```
+
+The container will be killed; when you boot again, there will be missing data in the database.
+
+### Kill
+
+```sh
+docker compose kill h2-database-java21
 ```
 
 The container will be killed; when you boot again, there will be missing data in the database.

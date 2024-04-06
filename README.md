@@ -12,8 +12,6 @@ rvm install "jruby-9.4.6.0"
 
 rvm use jruby-9.4.6.0
 
-sudo pacman -S postgresql-libs
-
 bundle
 ```
 

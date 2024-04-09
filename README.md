@@ -2,6 +2,8 @@
 
 This repository contains a reproduction for demonstrating potential durability issues with [H2 Database](https://h2database.com). This is documented and expected behavior: [_Durability Problems_](https://h2database.com/html/advanced.html#durability_problems)
 
+> _"In H2, after a power failure, a bit more than one second of committed transactions may be lost."_
+
 ## Setup
 
 ```sh
